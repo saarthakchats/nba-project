@@ -1,5 +1,5 @@
 {
-  "evaluation_timestamp": "20250623_162406",
+  "evaluation_timestamp": "20250623_181651",
   "model_info": {
     "type": "Advanced Machine Learning Algorithm",
     "training_data_span": "30+ years of professional basketball data",
@@ -99,7 +99,7 @@
     },
     "model_comparison": {
       "Our Model": 0.686,
-      "Random Guessing": 0.52,
+      "Random Guessing": 0.4896,
       "Always Pick Home Team": 0.5442,
       "Always Pick Away Team": 0.4558
     }

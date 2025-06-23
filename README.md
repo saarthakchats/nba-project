@@ -10,6 +10,28 @@ A machine learning system for predicting NBA game outcomes using L1 regularized 
 
 ## 🚀 **Quick Start**
 
+### 🎯 **Interactive Demo (Recommended)**
+Launch the professional web interface to test all system capabilities:
+
+```bash
+# Launch interactive demo
+python run_system.py demo
+
+# Or use the dedicated launcher
+python launch_demo.py
+```
+
+**Interactive Features:**
+- 🎯 **Game Predictions**: Test custom team matchups with real-time probability calculations
+- 📅 **Historical Games**: Validate model performance on actual past games with date/team search
+- 📊 **Performance Dashboard**: View model accuracy across different time periods  
+- 📈 **Historical Analysis**: Explore NBA trends and team statistics over 30 years
+- 💰 **Investment Simulation**: Test betting strategies with simulated bankroll progression
+- 🔍 **Model Evaluation**: Run comprehensive performance assessments
+- ℹ️ **System Information**: Check model status and technical specifications
+
+### ⚙️ **Command Line Setup**
+
 ### 1. Setup Environment
 ```bash
 # Create virtual environment

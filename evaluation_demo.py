@@ -30,39 +30,39 @@ class ProfessionalModelEvaluator:
         
     def load_model(self):
         """Load the trained model"""
-        print("🏀 NBA PREDICTION MODEL - PROFESSIONAL EVALUATION")
+        print("NBA PREDICTION MODEL - PROFESSIONAL EVALUATION")
         print("=" * 60)
-        print("🔒 Loading proprietary prediction model...")
+        print("Loading proprietary prediction model...")
         
         try:
             model_data = joblib.load(self.model_path)
             self.model = model_data['model']
             self.scaler = model_data['scaler']
             training_date = model_data.get('training_date', 'Unknown')
-            print(f"✅ Model loaded successfully")
-            print(f"📅 Model training date: {training_date}")
-            print(f"🧠 Model type: Advanced Machine Learning Algorithm")
-            print(f"📊 Features: Proprietary statistical indicators")
+            print(f"Model loaded successfully")
+            print(f"Model training date: {training_date}")
+            print(f"Model type: Advanced Machine Learning Algorithm")
+            print(f"Features: Proprietary statistical indicators")
             return True
         except Exception as e:
-            print(f"❌ Error loading model: {e}")
+            print(f"Error loading model: {e}")
             return False
     
     def load_evaluation_data(self):
         """Load data for evaluation"""
-        print(f"\n📂 Loading evaluation dataset...")
+        print(f"\nLoading evaluation dataset...")
         try:
             df = pd.read_csv(self.data_path)
-            print(f"✅ Dataset loaded: {len(df):,} games")
-            print(f"📅 Date range: {df['GAME_DATE'].min()} to {df['GAME_DATE'].max()}")
+            print(f"Dataset loaded: {len(df):,} games")
+            print(f"Date range: {df['GAME_DATE'].min()} to {df['GAME_DATE'].max()}")
             return df
         except Exception as e:
-            print(f"❌ Error loading data: {e}")
+            print(f"Error loading data: {e}")
             return None
     
     def prepare_features(self, df):
         """Prepare features for prediction (implementation hidden)"""
-        print("🔧 Preparing proprietary feature set...")
+        print("Preparing proprietary feature set...")
         
         # Calculate eFG% (this part can be shown as it's standard NBA stat)
         df["home_eFG%"] = (df["home_rolling_FGM"] + 0.5 * df["home_rolling_FG3M"]) / df["home_rolling_FGA"]
@@ -77,12 +77,12 @@ class ProfessionalModelEvaluator:
         labels_clean = df['home_win'].values[clean_mask]
         dates_clean = pd.to_datetime(df['GAME_DATE']).values[clean_mask]
         
-        print(f"✅ Feature engineering complete: {len(features_clean):,} games ready")
+        print(f"Feature engineering complete: {len(features_clean):,} games ready")
         return features_clean, labels_clean, dates_clean
     
     def evaluate_by_time_period(self, features, labels, dates):
         """Evaluate model performance across different time periods"""
-        print("\n📈 TEMPORAL PERFORMANCE ANALYSIS")
+        print("\nTEMPORAL PERFORMANCE ANALYSIS")
         print("-" * 40)
         
         periods = [
@@ -134,7 +134,7 @@ class ProfessionalModelEvaluator:
                 'high_confidence_accuracy': high_conf_acc
             }
             
-            print(f"📊 {period_name}:")
+            print(f"{period_name}:")
             print(f"   Games: {len(period_features):,}")
             print(f"   Accuracy: {accuracy:.1%}")
             if high_conf_acc:
@@ -144,7 +144,7 @@ class ProfessionalModelEvaluator:
     
     def evaluate_by_confidence_levels(self, features, labels, dates):
         """Evaluate performance at different confidence levels"""
-        print("\n🎯 CONFIDENCE-BASED PERFORMANCE ANALYSIS")
+        print("\nCONFIDENCE-BASED PERFORMANCE ANALYSIS")
         print("-" * 40)
         
         # Use recent data (last 2 years for relevance)
@@ -185,7 +185,7 @@ class ProfessionalModelEvaluator:
                 'percentage_of_total': (game_count / len(recent_labels)) * 100
             }
             
-            print(f"🎯 {level_name} (>{threshold:.0%}):")
+            print(f"{level_name} (>{threshold:.0%}):")
             print(f"   Games: {game_count:,} ({(game_count/len(recent_labels))*100:.1f}% of total)")
             print(f"   Accuracy: {level_accuracy:.1%}")
         
@@ -193,9 +193,9 @@ class ProfessionalModelEvaluator:
     
     def simulate_betting_performance(self, features, labels, dates):
         """Simulate betting performance (for ROI demonstration)"""
-        print("\n💰 SIMULATED INVESTMENT PERFORMANCE")
+        print("\nSIMULATED INVESTMENT PERFORMANCE")
         print("-" * 40)
-        print("📋 Note: For demonstration purposes only")
+        print("Note: For demonstration purposes only")
         
         # Use last year of data
         recent_cutoff = datetime.now() - timedelta(days=365)
@@ -251,7 +251,7 @@ class ProfessionalModelEvaluator:
                 'percentage_of_games': (total_bets / len(recent_labels)) * 100
             }
             
-            print(f"💵 {strategy_name}:")
+            print(f"{strategy_name}:")
             print(f"   Bets placed: {total_bets} ({(total_bets/len(recent_labels))*100:.1f}% of games)")
             print(f"   Win rate: {win_rate:.1%}")
             print(f"   Avg confidence: {np.mean(strategy_confidence):.1%}")
@@ -261,7 +261,7 @@ class ProfessionalModelEvaluator:
     
     def generate_model_comparison(self, features, labels):
         """Compare against baseline models"""
-        print("\n📊 COMPETITIVE ANALYSIS")
+        print("\nCOMPETITIVE ANALYSIS")
         print("-" * 40)
         
         # Use recent subset for comparison
@@ -294,7 +294,7 @@ class ProfessionalModelEvaluator:
             **baselines
         }
         
-        print("🏆 Model Performance Comparison:")
+        print("Model Performance Comparison:")
         for model_name, accuracy in sorted(comparison_results.items(), key=lambda x: x[1], reverse=True):
             print(f"   {model_name}: {accuracy:.1%}")
         
@@ -361,9 +361,9 @@ class ProfessionalModelEvaluator:
         csv_file = f"evaluation_summary_{timestamp}.csv"
         pd.DataFrame(csv_data).to_csv(csv_file, index=False)
         
-        print(f"\n💾 EVALUATION RESULTS SAVED:")
-        print(f"📄 Detailed results: {json_file}")
-        print(f"📊 Executive summary: {csv_file}")
+        print(f"\nEVALUATION RESULTS SAVED:")
+        print(f"Detailed results: {json_file}")
+        print(f"Executive summary: {csv_file}")
         
         return json_file, csv_file
     
@@ -445,7 +445,7 @@ BUSINESS APPLICATIONS:
         features, labels, dates = self.prepare_features(df)
         
         # Run all evaluations
-        print("\n🚀 RUNNING COMPREHENSIVE EVALUATION SUITE")
+        print("\nRUNNING COMPREHENSIVE EVALUATION SUITE")
         print("=" * 50)
         
         # Temporal analysis
@@ -463,14 +463,14 @@ BUSINESS APPLICATIONS:
         # Save results
         json_file, csv_file = self.save_evaluation_results()
         
-        # Generate professional report
-        report_file = self.create_professional_report()
+        # Generate professional report (disabled to avoid txt file generation)
+        # report_file = self.create_professional_report()
         
-        print(f"\n🎉 EVALUATION COMPLETE!")
-        print(f"📁 Files ready for presentation:")
+        print(f"\nEVALUATION COMPLETE!")
+        print(f"Files ready for presentation:")
         print(f"   • {json_file} (Technical details)")
-        print(f"   • {csv_file} (Executive summary)")  
-        print(f"   • {report_file} (Professional report)")
+        print(f"   • {csv_file} (Executive summary)")
+        # print(f"   • {report_file} (Professional report)")
         
         return True
 
@@ -480,9 +480,9 @@ def main():
     success = evaluator.run_complete_evaluation()
     
     if success:
-        print(f"\n✅ Ready for your buyer presentation!")
+        print(f"\nReady for your buyer presentation!")
     else:
-        print(f"\n❌ Evaluation failed - check error messages above")
+        print(f"\nEvaluation failed - check error messages above")
 
 if __name__ == "__main__":
     main() 

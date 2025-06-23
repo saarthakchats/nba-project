@@ -1,0 +1,107 @@
+{
+  "evaluation_timestamp": "20250623_180559",
+  "model_info": {
+    "type": "Advanced Machine Learning Algorithm",
+    "training_data_span": "30+ years of professional basketball data",
+    "features": "Proprietary statistical indicators",
+    "validation_method": "Time series cross-validation"
+  },
+  "performance_metrics": {
+    "temporal_performance": {
+      "Last 3 Years": {
+        "games": 5219,
+        "accuracy": 0.7016669860126461,
+        "high_confidence_games": "2894",
+        "high_confidence_accuracy": 0.7999308914996545
+      },
+      "Last 2 Years": {
+        "games": 3509,
+        "accuracy": 0.7064690795098318,
+        "high_confidence_games": "2026",
+        "high_confidence_accuracy": 0.8060217176702863
+      },
+      "Last 1 Year": {
+        "games": 1752,
+        "accuracy": 0.7037671232876712,
+        "high_confidence_games": "1053",
+        "high_confidence_accuracy": 0.8062678062678063
+      },
+      "Last 6 Months": {
+        "games": 1321,
+        "accuracy": 0.6987130961392884,
+        "high_confidence_games": "776",
+        "high_confidence_accuracy": 0.8028350515463918
+      },
+      "Last 3 Months": {
+        "games": 195,
+        "accuracy": 0.717948717948718,
+        "high_confidence_games": "134",
+        "high_confidence_accuracy": 0.8059701492537313
+      }
+    },
+    "confidence_performance": {
+      "All Predictions": {
+        "threshold": 0.0,
+        "games": "3509",
+        "accuracy": 0.7064690795098318,
+        "percentage_of_total": 100.0
+      },
+      "Medium Confidence": {
+        "threshold": 0.6,
+        "games": "2769",
+        "accuracy": 0.7583965330444203,
+        "percentage_of_total": 78.91137076090054
+      },
+      "High Confidence": {
+        "threshold": 0.7,
+        "games": "2026",
+        "accuracy": 0.8060217176702863,
+        "percentage_of_total": 57.737247078939866
+      },
+      "Very High Confidence": {
+        "threshold": 0.8,
+        "games": "1278",
+        "accuracy": 0.852112676056338,
+        "percentage_of_total": 36.420632658877174
+      },
+      "Extreme Confidence": {
+        "threshold": 0.9,
+        "games": "565",
+        "accuracy": 0.9097345132743363,
+        "percentage_of_total": 16.10145340552864
+      }
+    },
+    "betting_simulation": {
+      "Conservative (>75% confidence)": {
+        "total_bets": 859,
+        "correct_bets": "706",
+        "win_rate": 0.8218859138533178,
+        "avg_confidence": 0.8662471927017938,
+        "simulated_roi_percent": 29.788591385331774,
+        "percentage_of_games": 49.0296803652968
+      },
+      "Moderate (>70% confidence)": {
+        "total_bets": 1053,
+        "correct_bets": "849",
+        "win_rate": 0.8062678062678063,
+        "avg_confidence": 0.8401049795987855,
+        "simulated_roi_percent": 28.226780626780624,
+        "percentage_of_games": 60.1027397260274
+      },
+      "Aggressive (>65% confidence)": {
+        "total_bets": 1214,
+        "correct_bets": "948",
+        "win_rate": 0.7808896210873146,
+        "avg_confidence": 0.8184022305042622,
+        "simulated_roi_percent": 25.68896210873146,
+        "percentage_of_games": 69.29223744292237
+      }
+    },
+    "model_comparison": {
+      "Our Model": 0.686,
+      "Random Guessing": 0.507,
+      "Always Pick Home Team": 0.5442,
+      "Always Pick Away Team": 0.4558
+    }
+  }
+}
