@@ -1,0 +1,17 @@
+# Core data science libraries
+pandas>=2.0.0
+numpy>=1.24.0
+
+# NBA API for fetching basketball data
+nba-api>=1.4.0
+
+# Machine learning and data preprocessing
+scikit-learn>=1.3.0
+
+# Data visualization
+matplotlib>=3.7.0
+
+# Optional: Additional useful libraries for data analysis
+# scipy>=1.10.0
+# seaborn>=0.12.0
+# jupyter>=1.0.0 
