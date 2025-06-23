@@ -1,0 +1,14 @@
+Category,Metric,Value,Games,Details
+Temporal Performance,Last 3 Years,70.2%,5219,High confidence: 0.7999308914996545
+Temporal Performance,Last 2 Years,70.6%,3509,High confidence: 0.8060217176702863
+Temporal Performance,Last 1 Year,70.4%,1752,High confidence: 0.8062678062678063
+Temporal Performance,Last 6 Months,69.9%,1321,High confidence: 0.8028350515463918
+Temporal Performance,Last 3 Months,71.8%,195,High confidence: 0.8059701492537313
+Confidence Analysis,All Predictions,70.6%,3509,100.0% of total games
+Confidence Analysis,Medium Confidence,75.8%,2769,78.9% of total games
+Confidence Analysis,High Confidence,80.6%,2026,57.7% of total games
+Confidence Analysis,Very High Confidence,85.2%,1278,36.4% of total games
+Confidence Analysis,Extreme Confidence,91.0%,565,16.1% of total games
+Investment Simulation,Conservative (>75% confidence),82.2%,859,ROI: +29.8%
+Investment Simulation,Moderate (>70% confidence),80.6%,1053,ROI: +28.2%
+Investment Simulation,Aggressive (>65% confidence),78.1%,1214,ROI: +25.7%

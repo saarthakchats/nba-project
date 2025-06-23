@@ -1,0 +1,6 @@
+home_team,away_team,home_win_probability,away_win_probability,predicted_winner,confidence,home_stats,away_stats,timestamp
+Boston Celtics,Miami Heat,0.7559400639754433,0.24405993602455667,HOME,0.5118801279508867,"{'ENR': 6.2, 'eFG%': 0.562}","{'ENR': 2.1, 'eFG%': 0.531}",2025-06-23T11:54:51.164257
+Denver Nuggets,Los Angeles Lakers,0.7317820138947642,0.26821798610523584,HOME,0.4635640277895283,"{'ENR': 5.8, 'eFG%': 0.576}","{'ENR': 3.2, 'eFG%': 0.549}",2025-06-23T11:54:51.164377
+Milwaukee Bucks,Philadelphia 76ers,0.686584722842731,0.313415277157269,HOME,0.37316944568546195,"{'ENR': 4.9, 'eFG%': 0.558}","{'ENR': 4.1, 'eFG%': 0.544}",2025-06-23T11:54:51.164488
+Phoenix Suns,Dallas Mavericks,0.6161132441825116,0.38388675581748843,HOME,0.23222648836502313,"{'ENR': 3.8, 'eFG%': 0.551}","{'ENR': 4.5, 'eFG%': 0.565}",2025-06-23T11:54:51.164579
+Golden State Warriors,Sacramento Kings,0.7054155192525907,0.2945844807474093,HOME,0.41083103850518143,"{'ENR': 2.9, 'eFG%': 0.573}","{'ENR': 1.8, 'eFG%': 0.547}",2025-06-23T11:54:51.164669

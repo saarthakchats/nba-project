@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+
+import pandas as pd
+import numpy as np
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV, KFold, TimeSeriesSplit
+from sklearn.preprocessing import StandardScaler
+from sklearn.metrics import accuracy_score, classification_report
+
+def load_and_preprocess_data(csv_path):
+    try:
+        df = pd.read_csv(csv_path, parse_dates=["GAME_DATE"])
+
+        # Check for required columns
+        required_columns = [
+            "home_rolling_OREB", "home_rolling_DREB", "away_rolling_OREB", "away_rolling_DREB",
+            "home_rolling_STL", "away_rolling_STL", "home_rolling_TOV", "away_rolling_TOV",
+            "home_win"
+        ]
+
+        missing_cols = [col for col in required_columns if col not in df.columns]
+        if missing_cols:
+            raise ValueError(f"Missing columns: {missing_cols}")
+        
+        df = df.dropna(subset=required_columns)
+        df = df.sort_values("GAME_DATE")
+
+        df['home_reb_diff'] = df['home_rolling_OREB'] - df['away_rolling_DREB']
+        df['away_reb_diff'] = df['away_rolling_OREB'] - df['home_rolling_DREB']
+        
+        # Prepare features and target
+        feature_columns = ["home_reb_diff", "away_reb_diff"]  # Exclude home_win
+        X = df[feature_columns].values.astype(np.float64)
+        y = df["home_win"].values
+
+        return X, y, feature_columns
+
+    except Exception as e:
+        print(f"Error in data loading: {e}")
+        return None, None, None
+
+def print_selected_features(coefs, feature_names):
+    """Print features with non-zero coefficients"""
+    print("\nSelected Features:")
+    for name, coeff in zip(feature_names, coefs):
+        if abs(coeff) > 1e-6:  # Account for floating point precision
+            print(f"{name}: {coeff:.4f}")
+
+if __name__ == "__main__":
+    # Load and preprocess data
+    csv_path = "../data/rolling_averages_1985_2000.csv"
+    X, y, feature_names = load_and_preprocess_data(csv_path)
+    
+    if X is None or y is None:
+        exit(1)
+
+    # Data validation
+    print(f"Loaded {X.shape[0]} samples with {X.shape[1]} features")
+    
+    # Standardize features
+    scaler = StandardScaler()
+    try:
+        X_scaled = scaler.fit_transform(X)
+    except ValueError as e:
+        print(f"Scaling error: {e}")
+        print("Check for NaN/inf values in features")
+        exit(1)
+
+    # Set up logistic regression with L1 regularization
+    lr = LogisticRegression(
+        penalty='l1',
+        solver='liblinear',  # Suitable for L1 regularization
+        max_iter=1000,
+        random_state=42
+    )
+
+    # Hyperparameter grid
+    param_grid = {"C": [0.001, 0.01, 0.1, 1, 10, 100]}
+
+    # Cross-validation setup
+    # cv = KFold(n_splits=5, shuffle=False)
+    cv = TimeSeriesSplit(n_splits=5)
+
+    # Grid search
+    grid_search = GridSearchCV(lr, param_grid, scoring='accuracy', cv=cv, n_jobs=-1)
+    grid_search.fit(X_scaled, y)
+
+    # Best model
+    best_model = grid_search.best_estimator_
+    print(f"\nBest regularization strength (C): {grid_search.best_params_['C']}")
+    print(f"Best cross-val accuracy: {grid_search.best_score_:.4f}")
+
+    # Feature selection results
+    print_selected_features(best_model.coef_[0], feature_names)
+
+    # Final evaluation
+    split_idx = int(0.8 * len(X_scaled))
+    X_train, X_test = X_scaled[:split_idx], X_scaled[split_idx:]
+    y_train, y_test = y[:split_idx], y[split_idx:]
+
+    best_model.fit(X_train, y_train)
+    y_pred = best_model.predict(X_test)
+    
+    print("\nFinal Model Evaluation:")
+    print(f"Test Accuracy: {accuracy_score(y_test, y_pred):.4f}")
+    print("Classification Report:")
+    print(classification_report(y_test, y_pred))
